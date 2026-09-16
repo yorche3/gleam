@@ -11,6 +11,7 @@ Usa `gleam.toml` como manifiesto de proyecto, **gleam** como herramienta de cons
 | Módulo | Descripción |
 |--------|-------------|
 | [`core/foundations/`](core/foundations/) | **Fase 0 — Fundamentos**: `helloworld`, `hellouser`, `calculator`, `numbers` |
+| [`core/algorithms/`](core/algorithms/) | **Fase 1 — Algoritmos Puros**: `naive_sort` |
 
 ---
 
@@ -31,6 +32,10 @@ gleam test
 
 # Numbers Tests
 cd core/foundations/numbers
+gleam test
+
+# Naive Sort Tests
+cd core/algorithms/naive_sort
 gleam test
 ```
 
