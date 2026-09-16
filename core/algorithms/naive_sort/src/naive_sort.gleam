@@ -12,22 +12,84 @@
 pub fn selection_sort(arr: List(Int)) -> List(Int) {
   case arr {
     [] -> []
+    [x] -> [x]
     [x, ..xs] -> {
-      let #(min_val, rest) = pick_min_loop(x, [], xs)
+      let #(min_val, rest) = pick_min(x, [], xs)
       [min_val, ..selection_sort(rest)]
     }
   }
 }
 
-// Encuentra el mínimo de `remaining` y devuelve `#(mínimo, resto)`. `acc`
-// acumula (en orden inverso) los elementos que no son el mínimo corriente.
-fn pick_min_loop(min_val: Int, acc: List(Int), remaining: List(Int)) -> #(Int, List(Int)) {
+fn pick_min(
+  min_val: Int,
+  acc: List(Int),
+  remaining: List(Int),
+) -> #(Int, List(Int)) {
   case remaining {
     [] -> #(min_val, acc)
-    [x, ..xs] ->
+    [x, ..xs] -> {
       case x < min_val {
-        True -> pick_min_loop(x, [min_val, ..acc], xs)
-        False -> pick_min_loop(min_val, [x, ..acc], xs)
+        True -> pick_min(x, [min_val, ..acc], xs)
+        False -> pick_min(min_val, [x, ..acc], xs)
       }
+    }
+  }
+}
+
+pub fn bubble_sort(arr: List(Int)) -> List(Int) {
+  case arr {
+    [] -> []
+    [x] -> [x]
+    _ -> {
+      let #(new_arr, swapped) = bubble_pass(arr, False)
+      case swapped {
+        True -> bubble_sort(new_arr)
+        False -> new_arr
+      }
+    }
+  }
+}
+
+fn bubble_pass(arr: List(Int), swapped: Bool) -> #(List(Int), Bool) {
+  case arr {
+    [] -> #([], swapped)
+    [x] -> #([x], swapped)
+    [x, y, ..rest] -> {
+      case x > y {
+        True -> {
+          let #(new_rest, new_swapped) = bubble_pass([x, ..rest], True)
+          #([y, ..new_rest], new_swapped)
+        }
+        False -> {
+          let #(new_rest, new_swapped) = bubble_pass([y, ..rest], swapped)
+          #([x, ..new_rest], new_swapped)
+        }
+      }
+    }
+  }
+}
+
+pub fn insertion_sort(arr: List(Int)) -> List(Int) {
+  case arr {
+    [] -> []
+    [x] -> [x]
+    [x, ..xs] -> {
+      let head = x
+      let tail = xs
+      let sorted_tail = insertion_sort(tail)
+      insert(head, sorted_tail)
+    }
+  }
+}
+
+fn insert(x: Int, arr: List(Int)) -> List(Int) {
+  case arr {
+    [] -> [x]
+    [y, ..ys] -> {
+      case x <= y {
+        True -> [x, y, ..ys]
+        False -> [y, ..insert(x, ys)]
+      }
+    }
   }
 }
