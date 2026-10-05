@@ -2,7 +2,7 @@
 
 Implementaciones de la [Fase 1 — Algoritmos Puros](https://yorche3.github.io/programming_languages/ROADMAP/#fase-1--algoritmos-puros--algorithms-pure-) en **Gleam**, compilado al runtime de Erlang (**BEAM**): ordenamientos elementales, estructuras de datos propias, ordenamientos óptimos y distribuidos, y búsqueda.
 
-Los módulos de esta fase trabajan sobre listas **inmutables** (`List(Int)`): ninguna función ordena *in-place*, todas devuelven una lista nueva.
+Los módulos de esta fase trabajan con datos **inmutables**: `naive_sort` sobre listas (`List(Int)`) y `data_structures_basics` sobre sus propios tipos (`Node`, `LinkedList`, `Stack`, `Queue`). Ninguna función muta lo que recibe: todas devuelven el valor nuevo.
 
 ---
 
@@ -11,6 +11,7 @@ Los módulos de esta fase trabajan sobre listas **inmutables** (`List(Int)`): ni
 | Módulo | Especificación | Enfoque | Tests | Estado |
 |--------|---------------|---------|:-----:|:------:|
 | [`naive_sort/`](naive_sort/) | [05_Naive_Sort](https://yorche3.github.io/programming_languages/core/algorithms/05_Naive_Sort/) | `gleam test` + `gleeunit` | 3 | ✅ |
+| [`data_structures_basics/`](data_structures_basics/) | [06_Data_Structures_Basics](https://yorche3.github.io/programming_languages/core/algorithms/06_Data_Structures_Basics/) | `gleam test` + `gleeunit` | 4 | ✅ |
 
 ---
 
@@ -18,13 +19,21 @@ Los módulos de esta fase trabajan sobre listas **inmutables** (`List(Int)`): ni
 
 ```text
 algorithms/
-└── naive_sort/                   # 05_Naive_Sort
+├── naive_sort/                   # 05_Naive_Sort
+│   ├── gleam.toml
+│   ├── manifest.toml
+│   ├── src/
+│   │   └── naive_sort.gleam      # selection_sort, bubble_sort, insertion_sort
+│   ├── test/
+│   │   └── naive_sort_test.gleam # Entry point de gleeunit + 3 tests
+│   └── README.md
+└── data_structures_basics/       # 06_Data_Structures_Basics
     ├── gleam.toml
     ├── manifest.toml
     ├── src/
-    │   └── naive_sort.gleam      # selection_sort, bubble_sort, insertion_sort
+    │   └── data_structures_basics.gleam      # Node, LinkedList, Stack, Queue
     ├── test/
-    │   └── naive_sort_test.gleam # Entry point de gleeunit + 3 tests
+    │   └── data_structures_basics_test.gleam # Entry point de gleeunit + 4 tests
     └── README.md
 ```
 
@@ -43,7 +52,7 @@ algorithms/
 | **Descubrimiento** | Toda función pública terminada en `_test` se ejecuta automáticamente |
 | **Iteración** | Recursión con `case`; Gleam no tiene bucles ni mutabilidad |
 | **Helpers** | Funciones privadas (`fn` sin `pub`) |
-| **Indicador de fallo** | No aplica: `List(Int)` no admite entradas inválidas |
+| **Indicador de fallo** | `data_structures_basics`: `-1` en las consultas que devuelven un entero y tuplas `(valor, estructura)` en las extracciones; `naive_sort` no aplica: `List(Int)` no admite entradas inválidas |
 | **Formato** | `gleam format --check src test`, exigido por el CI del scaffold |
 
 ---
@@ -53,6 +62,11 @@ algorithms/
 ```bash
 # Naive Sort Tests
 cd naive_sort
+gleam build
+gleam test
+
+# Data Structures Basics Tests
+cd data_structures_basics
 gleam build
 gleam test
 ```
