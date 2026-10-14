@@ -8,7 +8,7 @@ Implementación de la especificación [01_Hello_World](https://yorche3.github.io
 
 | Archivo | Propósito |
 |---------|-----------|
-| [`src/helloworld.gleam`](src/helloworld.gleam) | Código fuente: imprime `"Hello, World! from Gleam!"` en la consola. |
+| [`src/hello_world.gleam`](src/hello_world.gleam) | Código fuente: imprime `"Hello, World! from Gleam!"` en la consola. |
 | [`gleam.toml`](gleam.toml) | Manifiesto del proyecto — nombre, versión, dependencias. |
 | [`manifest.toml`](manifest.toml) | Lock de dependencias — versiones exactas para builds reproducibles. |
 
@@ -17,9 +17,7 @@ Implementación de la especificación [01_Hello_World](https://yorche3.github.io
 ```text
 helloworld/
 ├── src/
-│   └── helloworld.gleam    # Código fuente
-├── test/                   # Tests (generado por gleam new)
-│   └── helloworld_test.gleam
+│   └── hello_world.gleam   # Código fuente
 ├── gleam.toml              # Manifiesto del proyecto
 ├── manifest.toml           # Lock de dependencias
 ├── .gitignore              # Ignora *.beam, *.ez, /build
