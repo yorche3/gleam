@@ -10,7 +10,7 @@ Lee un nombre desde la entrada estándar y saluda al usuario, **eliminando el sa
 
 | Archivo | Propósito |
 |---------|-----------|
-| [`src/hellouser.gleam`](src/hellouser.gleam) | Código fuente: solicita un nombre al usuario y lo saluda. |
+| [`src/hello_user.gleam`](src/hello_user.gleam) | Código fuente: solicita un nombre al usuario y lo saluda. |
 | [`test/hellouser_test.gleam`](test/hellouser_test.gleam) | Tests unitarios con gleeunit. |
 | [`gleam.toml`](gleam.toml) | Manifiesto del proyecto — nombre, versión, dependencias. |
 | [`manifest.toml`](manifest.toml) | Lock de dependencias — versiones exactas para builds reproducibles. |
@@ -20,7 +20,7 @@ Lee un nombre desde la entrada estándar y saluda al usuario, **eliminando el sa
 ```text
 hellouser/
 ├── src/
-│   └── hellouser.gleam    # Código fuente
+│   └── hello_user.gleam    # Código fuente
 ├── test/
 │   └── hellouser_test.gleam
 ├── gleam.toml              # Manifiesto del proyecto
@@ -50,7 +50,7 @@ hellouser/
 
 ## 📄 Archivos de configuración clave / Key Configuration Files
 
-### `src/hellouser.gleam`
+### `src/hello_user.gleam`
 
 **ES:** El flujo del programa es:
 
